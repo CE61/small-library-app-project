@@ -84,7 +84,7 @@ newBook.addEventListener("click", ()=>{
         container.style.backgroundColor = "lightblue";
     }else{
         header.style.visibility = "hidden";
-        container.style.backgroundColor = "antiquewhite";
+        container.style.backgroundColor = "lightgray";
     }
 });
 
