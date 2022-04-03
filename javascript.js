@@ -5,11 +5,13 @@ const readToggleIconHTML =
 const deleteIconHTML = 
 "<img src=\"images/delete_black_24dp.svg\" alt=\"Toggle Read\" height=\"24px\"/>";
 
-function Book(title, author, pages, read) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
+class Book{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
 }
 
 function refreshList(){
@@ -36,18 +38,22 @@ function refreshList(){
 }
 
 function addBookToLibrary() {
-    const title = document.getElementById("title").value;
-    const author = document.getElementById("author").value;
-    const pages = document.getElementById("pages").value;
-    const read = document.querySelector('input[name="read"]:checked').value;
+    const newTitle = document.getElementById("title").value;
+    const newAuthor = document.getElementById("author").value;
+    const newPages = document.getElementById("pages").value;
+    const newRead = document.querySelector('input[name="read"]:checked').value;
 
     console.log(title);
-    if(title!==""&&author!==""&&pages!==""&&read!==null){
-        const newBook = new Book(title,author,pages,read);
-        myLibrary.push(newBook);
-        console.log(myLibrary);
-        console.log(newBook);
-        console.log(read + " radio choice");
+    if(newTitle!==""&&newAuthor!==""&&newPages!==""&&newRead!==null){
+        if(myLibrary.some(book => book.title === newTitle && book.author === newAuthor)){
+            window.alert("Book is already in library!");
+        }else{
+            const newBook = new Book(newTitle,newAuthor,newPages,newRead);
+            myLibrary.push(newBook);
+            console.log(myLibrary);
+            console.log(newBook);
+            console.log(newRead + " radio choice");
+        }
 
         refreshList();
     }else{
